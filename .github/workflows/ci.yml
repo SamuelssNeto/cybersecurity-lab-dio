@@ -1,0 +1,29 @@
+name: Publicar documentação no GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Instalar MkDocs e tema Material
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install mkdocs-material
+
+      - name: Publicar no GitHub Pages
+        run: .venv/bin/mkdocs gh-deploy --force

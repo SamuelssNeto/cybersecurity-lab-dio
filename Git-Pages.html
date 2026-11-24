@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samuel S. S. Neto | Cibersegurança &amp; Desenvolvimento Web</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --surface: #131922;
+      --surface-hover: #19222e;
+      --border: #263140;
+      --text: #e6edf3;
+      --muted: #93a1b1;
+      --accent: #2aa198;
+      --accent-soft: rgba(42, 161, 152, 0.14);
+      --blue: #58a6ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* Navegação superior */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 20, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Container principal */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 64px;
+    }
+
+    /* Hero / Apresentação */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .avatar {
+      width: 155px;
+      height: 155px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+
+    .hero p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Seções */
+    section {
+      margin-bottom: 44px;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Grids e Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Badges das Stacks */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .badges img {
+      height: 28px;
+      border-radius: 4px;
+    }
+
+    /* Formação & EdTechs */
+    .edu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .edu-list li {
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .edu-list strong {
+      display: block;
+      color: var(--text);
+    }
+
+    .edu-list span {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Projetos */
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #0d131a;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .pill.highlight {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .btn-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Contato */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: #0d131a;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-contact:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px;
+      }
+      .hero p {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#sobre" class="brand">Samuel<span>.Neto</span></a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#stacks">Stacks</a>
+        <a href="#formacao">Formação &amp; Trilhas</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#competencias">Competências</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- Apresentação -->
+    <header id="sobre" class="hero">
+      <img
+        class="avatar"
+        src="https://images.weserv.nl/?url=github.com/SamuelssNeto.png&w=500&h=500&fit=cover&mask=circle"
+        alt="Foto de perfil de Samuel S. S. Neto"
+      />
+      <div>
+        <span class="hero-tag">Cibersegurança • Full Stack &amp; Mobile</span>
+        <h1>Olá! Eu sou Samuel S. S. Neto 👋</h1>
+        <p>
+          Tenho 41 anos e formação em Licenciatura em Ciências Sociais pela
+          <strong>Universidade Estadual de Londrina (UEL)</strong> e Bacharel em Teologia pelo
+          <strong>Instituto Bíblico Maranata (IBM)</strong> e pela
+          <strong>Universidade Presbiteriana Mackenzie</strong>, com experiência em ambas as áreas de minha formação.
+        </p>
+        <p>
+          Atualmente, dedico-me ao aprendizado de programação com interesse voltado às áreas de
+          <strong>Cibersegurança</strong> e <strong>Desenvolvimento Full Stack e Mobile</strong>, seguindo uma trilha de
+          profissionalização autodidata e aproveitando oportunidades de formação como as oferecidas pela
+          <strong>Santander Open Academy</strong>, <strong>DIO - Digital Innovation One</strong>,
+          <strong>freeCodeCamp.org</strong> e <strong>Fundação Bradesco: Escola Virtual</strong>.
+        </p>
+      </div>
+    </header>
+
+    <!-- Stacks Tecnológicas -->
+    <section id="stacks">
+      <h2 class="section-title">🛠️ Stacks Tecnológicas em Desenvolvimento</h2>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Cibersegurança &amp; Sistemas</h3>
+          <p>Ambientes Linux, controle de versão e fundamentos práticos de segurança da informação.</p>
+          <div class="badges">
+            <img src="https://img.shields.io/badge/Cybersecurity-000000?style=for-the-badge&logo=hackthebox&logoColor=9FEF00" alt="Cybersecurity" />
+            <img src="https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white" alt="Kali Linux" />
+            <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux" />
+            <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Desenvolvimento Front-end</h3>
+          <p>Estruturação semântica, estilização responsiva e interatividade na web.</p>
+          <div class="badges">
+            <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+            <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
+            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Formação & Trilhas -->
+    <section id="formacao">
+      <h2 class="section-title">🎓 Formação Acadêmica &amp; Trilhas em Tecnologia</h2>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Formação Acadêmica</h3>
+          <ul class="edu-list">
+            <li>
+              <strong>Licenciatura em Ciências Sociais</strong>
+              <span>Universidade Estadual de Londrina (UEL)</span>
+            </li>
+            <li>
+              <strong>Bacharel em Teologia</strong>
+              <span>Instituto Bíblico Maranata (IBM) &amp; Universidade Presbiteriana Mackenzie</span>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Trilhas &amp; Plataformas de Estudo</h3>
+          <ul class="edu-list">
+            <li>
+              <strong>Bootcamp Santander Cibersegurança</strong>
+              <span>DIO - Digital Innovation One / Santander Open Academy</span>
+            </li>
+            <li>
+              <strong>Desenvolvimento Web &amp; Fundamentos de TI</strong>
+              <span>freeCodeCamp.org &amp; Fundação Bradesco: Escola Virtual</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projetos -->
+    <section id="projetos">
+      <h2 class="section-title">📂 Projetos em Desenvolvimento</h2>
+      <div class="grid-2">
+        <article class="card">
+          <h3>cybersecurity-lab-dio</h3>
+          <p>
+            Repositório principal com registro de laboratórios práticos, análises e desafios na área de Cibersegurança e Redes.
+          </p>
+          <div class="project-meta">
+            <span class="pill highlight">Cibersegurança &amp; Redes</span>
+            <span class="pill">Bootcamp Santander Cibersegurança</span>
+            <span class="pill">DIO / Santander Open Academy</span>
+          </div>
+          <a class="btn-link" href="https://github.com/SamuelssNeto/cybersecurity-lab-dio" target="_blank" rel="noopener">
+            Acessar repositório no GitHub →
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Projetos Web Front-end (Em construção)</h3>
+          <p>
+            Próximos projetos aplicados de desenvolvimento Web consolidando HTML5, CSS3, JavaScript e boas práticas de interface.
+          </p>
+          <div class="project-meta">
+            <span class="pill highlight">Front-end</span>
+            <span class="pill">Formação Front-end</span>
+            <span class="pill">Projeto Pessoal</span>
+          </div>
+          <a class="btn-link" href="https://github.com/SamuelssNeto" target="_blank" rel="noopener">
+            Acompanhar atualizações no GitHub →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Competências -->
+    <section id="competencias">
+      <h2 class="section-title">✨ Competências &amp; Diferenciais</h2>
+      <p style="color: var(--muted); margin-bottom: 18px;">
+        Minha trajetória nas Ciências Sociais e na Teologia agrega diferenciais essenciais ao desenvolvimento de software e à segurança da informação:
+      </p>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Pensamento Analítico e Crítico</h3>
+          <p>Capacidade de investigar problemas complexos sob múltiplas perspectivas antes de propor soluções técnicas.</p>
+        </article>
+
+        <article class="card">
+          <h3>Comunicação Clara e Estruturada</h3>
+          <p>Facilidade para documentar processos, escrever relatórios técnicos e colaborar em equipe.</p>
+        </article>
+
+        <article class="card">
+          <h3>Ética e Responsabilidade</h3>
+          <p>Compromisso com boas práticas, privacidade de dados e segurança desde a concepção dos projetos.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+      <h2 class="section-title">📫 Canais de Contato</h2>
+      <div class="contact-box">
+        <div>
+          <h3 style="margin-bottom: 4px;">Vamos conversar?</h3>
+          <p style="color: var(--muted); font-size: 0.95rem;">
+            Aberto a conexões, troca de experiências em Cibersegurança e projetos de desenvolvimento.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn-contact" href="https://www.linkedin.com/in/samuelssneto" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+          <a class="btn-contact" href="mailto:samuelssneto@gmail.com">
+            samuelssneto@gmail.com
+          </a>
+          <a class="btn-contact" href="https://github.com/SamuelssNeto" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Samuel S. S. Neto • Publicado com GitHub Pages</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>
