@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Baixar código do repositório
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -23,7 +25,9 @@ jobs:
       - name: Instalar MkDocs e tema Material
         run: |
           python -m venv .venv
-          .venv/bin/pip install mkdocs-material
+          .venv/bin/pip install --upgrade pip
+          .venv/bin/pip install mkdocs mkdocs-material
 
       - name: Publicar no GitHub Pages
         run: .venv/bin/mkdocs gh-deploy --force
+        
